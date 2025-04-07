@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Homework 1 Problem 2</title>
+    </head>
+    <body>
+        <svg width="500" height="500" id="bmw">
+            <style>
+                .logotext {
+                    font-family: Helvetica;
+                    fill: white;
+                    text-anchor: middle;
+                    font-size: 35px;
+                    font-weight: bold;
+                }
+            </style>
+
+            <defs>
+                <radialGradient id="grad" cx="10%" cy="10%" fx="20%" fy="20%">
+                    <stop offset="0%" style="stop-color:gray;stop-opacity:0" />
+                    <stop offset="90%" style="stop-color:black;stop-opacity:1" />
+                </radialGradient>
+            </defs>
+            
+            <g id="logo">
+                <circle cx="150" cy="150" r="100" fill="gray" />
+                <circle cx="150" cy="150" r="97" fill="url(#grad)" />
+                <circle cx="150" cy="150" r="65" fill="gray" />
+                <path d="M 149 149 L 88 149 A 61 61 0 0 1 149 88" fill="rgb(1,102,177)" />
+                <path d="M 151 151 L 151 212 A 61 61 0 0 0 212 151" fill="rgb(1,102,177)" />
+                <path d="M 151 149 L 212 149 A 61 61 0 0 0 151 88" fill="white" />
+                <path d="M 149 151 L 88 151 A 61 61 0 0 0 149 212" fill="white" /> 
+                <text x="150" y="82" class="logotext">M</text>
+                <text x="150" y="82" class="logotext" transform="rotate(45 150 150)">W</text>
+                <text x="150" y="82" class="logotext" transform="rotate(-45 150 150)">B</text>
+
+                <animateTransform attributeName="transform"
+                                begin="0s"
+                                dur="3s"
+                                type="rotate"
+                                from="0 150 150"
+                                to="360 150 150"
+                                repeatCount="indefinite" />
+            </g>
+        </svg>
+    </body>
+
+    <script>
+        const logo = document.getElementById("bmw");
+
+        window.onload = () => {
+            logo.pauseAnimations(); 
+        };
+
+        window.addEventListener("keyup", () => {
+            logo.pauseAnimations();
+        });
+        window.addEventListener("keydown", () => {
+            logo.unpauseAnimations();
+        });
+    </script>
+</html>
