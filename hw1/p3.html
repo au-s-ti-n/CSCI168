@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>Homework 1 Problem 3</title>
+    </head>
+
+    <body>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <script>
+			let canvas = document.getElementById("canvas");
+			let ctx = canvas.getContext("2d");
+
+            let angle = 0;
+            let isRotating = false;
+
+            function draw() 
+            {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.save();
+
+                ctx.translate(canvas.width/2, canvas.height/2);
+                ctx.rotate(angle);
+
+                ctx.beginPath();
+                ctx.arc(0, 0, 100, 0, 2 * Math.PI);
+                ctx.fillStyle="gray";
+                ctx.fill();
+                ctx.strokeStyle = "gray";
+                ctx.stroke();
+
+                let rad_grd = ctx.createRadialGradient(-75, -75, 10, -75, -75, 100);
+                rad_grd.addColorStop(0, "gray");
+                rad_grd.addColorStop(1, "black");
+                
+                ctx.fillStyle = rad_grd;
+                ctx.strokeStyle = rad_grd;
+                
+                ctx.beginPath();
+                ctx.arc(0, 0, 97, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.lineWidth = 0;
+                ctx.stroke();
+
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(65, 0);
+                ctx.arc(0, 0, 65, 0, 0.5 * Math.PI);
+                ctx.fillStyle="rgb(1, 102, 177)";
+                ctx.fill();
+                ctx.strokeStyle = "gray";
+                ctx.stroke();
+                
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, 65);
+                ctx.arc(0, 0, 65, 0.5 * Math.PI, Math.PI);
+                ctx.fillStyle="white";
+                ctx.fill();
+                ctx.strokeStyle = "gray";
+                ctx.stroke();
+
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(-65, 0);
+                ctx.arc(0, 0, 65, Math.PI, 1.5 * Math.PI);
+                ctx.fillStyle="rgb(1, 102, 177)";
+                ctx.fill();
+                ctx.strokeStyle = "gray";
+                ctx.stroke();
+
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -65);
+                ctx.arc(0, 0, 65, 1.5 * Math.PI, 2 * Math.PI);
+                ctx.fillStyle="white";
+                ctx.fill();
+                ctx.strokeStyle = "gray";
+                ctx.stroke();
+
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.lineTo(65, 0);
+                ctx.stroke();
+                
+                ctx.font = "bold 35px Helvetica";
+                ctx.textBaseline = "middle";
+                ctx.textAlign = "center";
+
+                ctx.translate(0, -80);
+                ctx.fillText("M",0,0);
+                ctx.translate(0, 80);
+                
+                ctx.rotate(1.75 * Math.PI)
+                ctx.translate(0, -80);
+                ctx.fillText("B",0,0);
+                ctx.translate(0, 80);
+                
+                ctx.rotate(0.5 * Math.PI);
+                ctx.translate(0, -80);
+                ctx.fillText("W",0,0);
+
+                ctx.restore();
+            }
+
+            function update() {
+                if (isRotating) {
+                    angle += 0.02 * Math.PI;
+                }
+                draw();
+                requestAnimationFrame(update);
+            }
+
+            document.addEventListener('keydown', (e) => {
+                isRotating = true;
+            });
+
+            document.addEventListener('keyup', (e) => {
+                isRotating = false;
+            });
+
+            update();
+            
+		</script>
+    </body>
+</html>
