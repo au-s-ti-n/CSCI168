@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Homework 2 Problem 2</title>
+    </head>
+    
+    <body>
+        <canvas id="canvas" width="800" height="600" />
+
+        <script>
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext("2d");
+
+            const colors = ["B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B",
+                            "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R",
+                            "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", 
+                            "G", "G", "G", "G", "O", "O", "O", "O", "P", "P", "P", "P"];
+            
+            function makeBlue() {
+                ctx.fillStyle="blue";
+                ctx.fillRect(0, 0, 100, 100);
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 8;
+                ctx.strokeRect(25, 25, 50, 50);
+            }
+
+            function makeRed() {
+                ctx.fillStyle="red";
+                ctx.fillRect(0, 0, 100, 100);
+                ctx.strokeStyle="black";
+                ctx.lineWidth = 8;
+                ctx.beginPath();
+                ctx.arc(50, 50, 30, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+
+            function makeYellow() {
+                ctx.fillStyle="yellow";
+                ctx.fillRect(0, 0, 100, 100);
+                ctx.strokeStyle="black";
+                ctx.lineWidth = 8;
+                ctx.beginPath();
+                ctx.moveTo(50, 20);
+                ctx.lineTo(50, 80);
+                ctx.moveTo(20, 50);
+                ctx.lineTo(80, 50);
+                ctx.closePath();
+			    ctx.stroke();
+            }
+
+            function makeGreen() {
+                ctx.fillStyle="green";
+                ctx.fillRect(0, 0, 100, 100);
+            }
+
+            function makeOrange() {
+                ctx.fillStyle="orange";
+                ctx.fillRect(0, 0, 100, 100);
+            }
+
+            function makePurple() {
+                ctx.fillStyle="purple";
+                ctx.fillRect(0, 0, 100, 100);
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 8;
+                ctx.strokeRect(25, 25, 50, 50);
+                ctx.lineWidth = 8;
+                ctx.beginPath();
+                ctx.arc(50, 50, 35, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+
+            while (colors.length > 0) {
+                max = colors.length-1;
+                idx = Math.floor(Math.random() * (max + 1));
+                color = colors[idx];
+                colors.splice(idx, 1);
+
+                if (color == "B")
+                    makeBlue();
+                else if (color == "R") 
+                    makeRed();
+                else if (color == "Y")
+                    makeYellow();
+                else if (color == "G")
+                    makeGreen();
+                else if (color == "O")
+                    makeOrange();
+                else
+                    makePurple();
+                
+                if (colors.length % 8 == 0) {
+                    ctx.translate(-700, 100);
+                }
+                else {
+                    ctx.translate(100, 0);
+                }
+            }
+        </script>
+    </body>
+</html>
